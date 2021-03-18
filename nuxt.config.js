@@ -13,12 +13,11 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/fontawesome.js'],
+  plugins: ['~/plugins/fontawesome.js', '~/plugins/axios.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -28,29 +27,43 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
   ],
-
+  eslint: {
+    fix: true,
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
-
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  // axios: {
+  //   baseURL: process.env.API_DEV,
+  // },
   axios: {
-    baseURL: process.env.API_CLIENT,
+    baseURL:
+      process.env.NODE_ENV !== 'production'
+        ? process.env.API_DEV
+        : process.env.API_CLIENT,
   },
 
   publicRuntimeConfig: {
     axios: {
-      browserBaseURL: process.env.API_CLIENT,
+      browserBaseURL:
+        process.env.NODE_ENV !== 'production'
+          ? process.env.API_DEV
+          : process.env.API_CLIENT,
     },
   },
 
   privateRuntimeConfig: {
     axios: {
-      baseURL: process.env.API_SERVER,
+      baseURL:
+        process.env.NODE_ENV !== 'production'
+          ? process.env.API_DEV
+          : process.env.API_SERVER,
     },
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
