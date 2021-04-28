@@ -16,7 +16,7 @@ export default {
   },
   mounted() {
     window.console.log('sending')
-    this.$axios.$get('/user-profile/my-link').then((res) => {
+    this.$axios.$get('/userp/my-link').then((res) => {
       this.items = res
     })
   },
