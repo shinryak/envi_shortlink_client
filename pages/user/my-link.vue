@@ -10,6 +10,7 @@ export default {
       fields: [
         { key: 'query', label: 'Query' },
         { key: 'redirect', label: 'Link' },
+        { key: 'redirectCount', label: 'Số lượt' },
       ],
       items: [],
     }
